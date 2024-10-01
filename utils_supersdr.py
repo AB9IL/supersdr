@@ -1,3 +1,4 @@
+import os
 import random
 import struct
 import array
@@ -41,6 +42,9 @@ from mod_pywebsocket.stream import StreamOptions
 from mod_pywebsocket._stream_base import ConnectionTerminatedException
 
 VERSION = "v3.14"
+
+# user home directory 
+HOME = os.path.expanduser("~")
 
 TENMHZ = 7451  # frequency threshold for auto mode (USB/LSB) switch
 CW_PITCH = 0.750  # CW offset from carrier in kHz
@@ -188,6 +192,7 @@ class audio_recording:
         self.wave.writeframes(b"".join(self.audio_buffer))
         self.wave.close()
         self.recording = False
+        os.system(f"mv {self.filename} {HOME}/{self.filename}")
 
 
 class dxcluster:
@@ -1109,9 +1114,6 @@ class kiwi_sound:
                 elif msg and "MSG audio_init" in bytearray2str(msg):
                     msg = bytearray2str(msg)
                     els = msg[4:].split()
-                    print("ELS ELS ELS")
-                    print(els)
-                    print("ELS^ELS^ELS")
                     self.KIWI_RATE = int(int(els[1].split("=")[1]))
                     self.KIWI_RATE_TRUE = float(els[1].split("=")[1])
                     self.delta_t = self.KIWI_RATE_TRUE - self.KIWI_RATE
