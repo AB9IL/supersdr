@@ -38,6 +38,9 @@ OK, these are the main points you should be familiar with to use the software. T
 
 ## Prerequisites:
 Install Python 3 along with PYGAME, SOUNDDEVICE, MATPLOTLIB and NUMPY/SCIPY, or whatever it asks when breaking apart upon launch ;) If you use Linux I hope I don't have to tell you how to install librearies and Python components: I presonally use a Arch based distro and pip to keep everything updated.
+
+For Python version 3.13 or later, install **chunkmuncher** which is a replacement for the deprecated chunk module.
+
 ### On Windows:
 There is now a preliminary Windows [executable](https://github.com/mcogoni/supersdr/releases/download/v3.0beta/WinSuperSDR.zip) thanks to [Giovanni Busonera](https://github.com/Strato75).
 This version doesn't need any library nor Python environment. The Windows executable will always lag a bit during the development.
