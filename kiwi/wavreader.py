@@ -4,7 +4,10 @@ import collections
 import collections.abc
 import struct
 import numpy as np
-from chunk import Chunk
+# for Python3.13 or later, install chunkmuncher
+from chunkmuncher import chunk as Chunk
+# for earlier Python3 versions, use the chunk module
+#from chunk import Chunk
 
 class KiwiIQWavError(Exception):
     pass
