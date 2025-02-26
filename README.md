@@ -58,7 +58,7 @@ This version doesn't need any library nor Python environment. The Windows execut
 There is now the possibility to launch the program _with no command line options_ and select the kiwi server at the start or change it at runtime (still buggy, but it mostly works). To use the CAT, at least for now, you have to specify it from the command line.
 
 _**Comment by Philip / AB9IL:**_
-You should use the [SuperSDR Wrapper](https://github.com/AB9IL/supersdr-wrapper) to easily sort through and handle operation of SuperSDR. It requires Python and Bash, plus the SDR database from [Dyatlov Map Maker](https://github.com/AB9IL/dyatlov). Lightweight and fast, 100x easier than manually entering data on the command line. Nevertheless, read below for the fundamentals of SuperSDR operation. \_
+You should use the [SuperSDR Wrapper](https://github.com/AB9IL/supersdr-wrapper) to easily sort through and handle operation of SuperSDR. It requires Python and Bash, plus the SDR database from [Dyatlov Map Maker](https://github.com/AB9IL/dyatlov). Lightweight and fast, 100x easier than manually entering data on the command line. Nevertheless, read below for the fundamentals of SuperSDR operation.
 
 To launch the program under Linux:
 
