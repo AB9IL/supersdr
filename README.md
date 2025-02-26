@@ -1,12 +1,12 @@
 # SuperSDR
 
 ![SuperSDR in action](https://github.com/mcogoni/supersdr/blob/main/SuperSDR_screenshot.png)
-SuperSDR integrates a realtime spectrum waterfall and (dual) audio receive from any KiwiSDR around the world, together with a local (or remote) controlled CAT transceiver.
+SuperSDR integrates a realtime spectrum waterfall and (dual) audio receive from any KiwiSDR or Web-888 SDR around the world, together with a local (or remote) controlled CAT transceiver.
 
 There are three main scenarios in which you'd like to use SuperSDR:
 
-- you've got a _radio without a panadapter_ (I have a Kenwood TS-590SG) or you're simply _not happy with it_, in this case this application can help you to use your (or someone else's!) KiwiSDR as a powerful panadapter and multiple receiver and to have all seamlessly synchronized: you may control your Kiwi by tuning the radio or vice versa; you may also transmit with the radio and have your Kiwi RX muted automatically;
-- you've got a KiwiSDR and you're sick of using its stock web interface, you'd like to have near-zero latency, waterfall immunity from thunderstorms, powerful keyboard shortcuts, VERY low CPU usage (you may run dozens of instances on a powerful PC), much improved waterfall averaging to detect even the faintest signals (à la LINRAD), ability to receive from multiple remote KiwiSDRs, you want a low resources app able to run from a Raspberry Pi to a Windows PC to a Macbook Pro, you want a very compact code that you can tweak to your needs even not being a Python programmer;
+- you've got a _radio without a panadapter_ (I have a Kenwood TS-590SG) or you're simply _not happy with it_, in this case this application can help you to use your (or someone else's!) KiwiSDR or Web-888 SDR as a powerful panadapter and multiple receiver and to have all seamlessly synchronized: you may control your Kiwi by tuning the radio or vice versa; you may also transmit with the radio and have your Kiwi RX muted automatically;
+- you've got a KiwiSDR or Web-888 SDR and you're sick of using its stock web interface, you'd like to have near-zero latency, waterfall immunity from thunderstorms, powerful keyboard shortcuts, VERY low CPU usage (you may run dozens of instances on a powerful PC), much improved waterfall averaging to detect even the faintest signals (à la LINRAD), ability to receive from multiple remote KiwiSDRs, you want a low resources app able to run from a Raspberry Pi to a Windows PC to a Macbook Pro, you want a very compact code that you can tweak to your needs even not being a Python programmer;
 - your HF radio is connected to a very directional antenna and you don't want to lose those faint signals from every direction: in this case you may connect your Kiwi RX to a good omnidirectional wide band receive antenna and explore the bands with it, then, when you find something interesting, you turn to your directional antenna on the CAT radio and you make the contact.
 
 There are three main items that may be independently controlled:
@@ -58,7 +58,7 @@ This version doesn't need any library nor Python environment. The Windows execut
 There is now the possibility to launch the program _with no command line options_ and select the kiwi server at the start or change it at runtime (still buggy, but it mostly works). To use the CAT, at least for now, you have to specify it from the command line.
 
 _**Comment by Philip / AB9IL:**_
-_You should use the [SuperSDR Wrapper](https://github.com/AB9IL/supersdr-wrapper) to easily sort through and handle operation of SuperSDR. It requires Python and Bash, plus the SDR database from [Dyatlov Map Maker](https://github.com/AB9IL/dyatlov). Lightweight and fast, 100x easier than manually entering data on the command line. Nevertheless, read below for the fundamentals of SuperSDR operation. _
+You should use the [SuperSDR Wrapper](https://github.com/AB9IL/supersdr-wrapper) to easily sort through and handle operation of SuperSDR. It requires Python and Bash, plus the SDR database from [Dyatlov Map Maker](https://github.com/AB9IL/dyatlov). Lightweight and fast, 100x easier than manually entering data on the command line. Nevertheless, read below for the fundamentals of SuperSDR operation. \_
 
 To launch the program under Linux:
 
