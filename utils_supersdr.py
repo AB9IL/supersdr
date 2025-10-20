@@ -1,16 +1,17 @@
-import os
-import random
-import struct
 import array
 import math
-from collections import deque, defaultdict
+import os
 import pickle
-import threading, queue
+import queue
+import random
 import socket
-import time
-from datetime import datetime, timedelta
+import struct
 import sys
+import threading
+import time
 import urllib
+from collections import defaultdict, deque
+from datetime import datetime, timedelta
 
 if sys.version_info > (3,):
     buffer = memoryview
@@ -22,24 +23,26 @@ else:
     def bytearray2str(b):
         return str(b)
 
+import string
+import tkinter
+import wave
+from tkinter import *
+
 import numpy as np
+import pygame
+import pygame.draw
+import pygame.event
+import pygame.font
+import pygame.freetype
+import sounddevice as sd
+from pygame.locals import *
 from scipy.signal import resample_poly, welch
 
-import sounddevice as sd
-import wave
-
-import tkinter
-from tkinter import *
-from pygame.locals import *
-import pygame, pygame.font, pygame.event, pygame.draw, string, pygame.freetype
-
-from qrz_utils import *
-
-from kiwi import wsclient
 import mod_pywebsocket.common
-from mod_pywebsocket.stream import Stream
-from mod_pywebsocket.stream import StreamOptions
+from kiwi import wsclient
 from mod_pywebsocket._stream_base import ConnectionTerminatedException
+from mod_pywebsocket.stream import Stream, StreamOptions
+from qrz_utils import *
 
 VERSION = "v3.14"
 
@@ -1006,7 +1009,6 @@ class kiwi_sound:
     CHANNELS = 2
     AUDIO_RATE = 48000
     KIWI_RATE = 12000
-    KIWI_RATE_TRUE = KIWI_RATE
     SAMPLE_RATIO = int(AUDIO_RATE / KIWI_RATE)
     CHUNKS = 1
     KIWI_SAMPLES_PER_FRAME = 512
@@ -1114,13 +1116,23 @@ class kiwi_sound:
                 elif msg and "MSG audio_init" in bytearray2str(msg):
                     msg = bytearray2str(msg)
                     els = msg[4:].split()
-                    self.KIWI_RATE = int(int(els[1].split("=")[1]))
-                    self.SAMPLE_RATIO = self.AUDIO_RATE / self.KIWI_RATE
-                elif msg and "MSG sample_rate" in bytearray2str(msg):
-                    msg = bytearray2str(msg)
-                    els = msg[4:].split()
-                    self.KIWI_RATE_TRUE = float(els[0].split("=")[1])
-                    self.delta_t = self.KIWI_RATE_TRUE - self.KIWI_RATE
+                    # Handle different KiwiSDR server response formats
+                    # Newer format: audio_init=0 audio_rate=12000
+                    # Older format: audio_init=0 audio_rate=12000 audio_rate_true=12000.0
+                    if len(els) >= 2:
+                        self.KIWI_RATE = int(els[1].split("=")[1])
+                        # If audio_rate_true is not provided, assume it equals audio_rate
+                        if len(els) >= 3:
+                            self.KIWI_RATE_TRUE = float(els[2].split("=")[1])
+                        else:
+                            self.KIWI_RATE_TRUE = float(self.KIWI_RATE)
+                        self.delta_t = self.KIWI_RATE_TRUE - self.KIWI_RATE
+                        self.SAMPLE_RATIO = self.AUDIO_RATE / self.KIWI_RATE
+                # elif msg and "MSG sample_rate" in bytearray2str(msg):
+                #     msg = bytearray2str(msg)
+                #     els = msg[4:].split()
+                #     self.KIWI_RATE_TRUE = float(els[0].split("=")[1])
+                #     self.delta_t = self.KIWI_RATE_TRUE - self.KIWI_RATE
         except:
             print("Failed to connect to Kiwi audio stream")
             raise
